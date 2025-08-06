@@ -36,7 +36,6 @@ import {
   TailwindCSS,
   TypeScript,
 } from 'developer-icons';
-import { CloudDrizzle } from 'lucide-react';
 import Link from 'next/link';
 import type { JSX } from 'react';
 

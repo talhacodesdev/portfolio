@@ -8,16 +8,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
 
-const funnyText = [
-  'Fueled by ☕, focused on 💻, and occasionally lost in 🔍 console logs',
-  'Proudly coding with ❤️ and a sprinkle of 🌟',
-  'Building the web one bug at a time 🐞 → 🛠️',
-  'I turn caffeine ☕ into clean code and real-world solutions 🚀',
-  ' Writing code that even future me <strong><i>hopefully</i></strong> understands 😅',
-];
+// const funnyText = [
+//   'Fueled by ☕, focused on 💻, and occasionally lost in 🔍 console logs',
+//   'Proudly coding with ❤️ and a sprinkle of 🌟',
+//   'Building the web one bug at a time 🐞 → 🛠️',
+//   'I turn caffeine ☕ into clean code and real-world solutions 🚀',
+//   ' Writing code that even future me <strong><i>hopefully</i></strong> understands 😅',
+// ];
 
 const Page = () => {
-  const randomText = funnyText[Math.floor(Math.random() * funnyText.length)];
+  // const randomText = funnyText[Math.floor(Math.random() * funnyText.length)];
 
   return (
     <div className="h-auto  w-full">
@@ -33,18 +33,18 @@ const Page = () => {
                 {/* Info */}
                 <TextFade direction="up" className="flex-1 text-sm space-y-3">
                   <h2 className="text-xl font-semibold">
-                    Hello! I'm <span>Talha</span> 👋
+                    Hello! I&apos;m <span>Talha</span> 👋
                   </h2>
                   <Balancer>
-                    I'm a <strong>Full Stack Developer</strong> with a passion
-                    for building modern, responsive, and scalable web
+                    I&apos;m a <strong>Full Stack Developer</strong> with a
+                    passion for building modern, responsive, and scalable web
                     applications.
                   </Balancer>
 
                   <Balancer>
-                    With <strong>2+ years</strong> of hands-on experience, I'm
-                    continuously refining my craft to build performant and
-                    intuitive web applications.
+                    With <strong>2+ years</strong> of hands-on experience,
+                    I&apos;m continuously refining my craft to build performant
+                    and intuitive web applications.
                   </Balancer>
 
                   <Balancer>

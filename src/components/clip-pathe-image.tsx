@@ -16,7 +16,8 @@ function ClipPathImage() {
       </svg>
 
       {/* Image with clip path applied */}
-      <figure style={{ clipPath: 'url(#clip-another5)' }} className="">
+      <figure style={{ clipPath: 'url(#clip-another5)' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/talha.jpg"
           alt="Description"

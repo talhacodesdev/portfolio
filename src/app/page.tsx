@@ -2,7 +2,6 @@ import { FourBorder } from '@/components/four-border';
 import MenuList from '@/components/menu-list';
 import { Separator } from '@/components/separator';
 import {
-  Discord,
   Facebook,
   GitHub,
   Gmail,
@@ -54,7 +53,7 @@ const icons = [
   {
     label: 'Telegram',
     icon: <Telegram className="text-muted-foreground text-xl" />,
-    href: 'https://t.me/talhacodes',
+    href: 'https://t.me/talhacodesdev',
   },
   // {
   //   label: 'Discord',

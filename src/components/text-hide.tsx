@@ -9,7 +9,6 @@ interface ExpandableTextProps {
 
 const ExpandableText = ({ text }: ExpandableTextProps) => {
   const [showFull, setShowFull] = useState(false);
-  const isLong = text.length > 15;
 
   const previewText = text.slice(0, 15) + '...';
 

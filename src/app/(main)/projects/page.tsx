@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import { CloudMoon, Code, Database, Eye, PanelTop, Route } from 'lucide-react';
+import { CloudMoon, Code, Eye, PanelTop } from 'lucide-react';
 import Balancer from 'react-wrap-balancer';
 import {
   Dialog,
