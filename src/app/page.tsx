@@ -32,7 +32,7 @@ const icons = [
   {
     label: 'GitHub',
     icon: <GitHub className="text-muted-foreground text-xl" />,
-    href: 'https://github.com/talhaabu1',
+    href: 'https://github.com/talhacodesdev',
   },
   {
     label: 'DailyDev',
