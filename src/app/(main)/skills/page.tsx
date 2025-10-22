@@ -18,6 +18,7 @@ import {
 } from '@/icon/icons';
 import {
   ARC,
+  Bootstrap5,
   CSS,
   Git,
   HTML5,
@@ -49,15 +50,21 @@ type Skill = {
 const frontend: Skill[] = [
   {
     name: 'HTML',
-    icon: <HTML5 className=" size-10" />,
+    icon: <HTML5 className="size-10" />,
     link: 'https://www.w3schools.com/html/',
     level: 'expert',
   },
   {
     name: 'CSS',
-    icon: <CSS className=" size-10" />,
+    icon: <CSS className="size-10" />,
     link: 'https://www.w3schools.com/css/',
     level: 'advanced',
+  },
+  {
+    name: 'Bootstrap',
+    icon: <Bootstrap5 className="size-10" />,
+    link: 'https://getbootstrap.com/',
+    level: 'used',
   },
   {
     name: 'Tailwind',
@@ -196,13 +203,13 @@ const tools: Skill[] = [
     name: 'Trae',
     icon: <Trae className="size-10" />,
     link: 'https://www.trae.ai/',
-    level: 'proficient',
+    level: 'expert',
   },
   {
     name: 'Git',
     icon: <Git className="size-10" />,
     link: 'https://git-scm.com/',
-    level: 'expert',
+    level: 'advanced',
   },
   {
     name: 'GitHub',
