@@ -202,13 +202,13 @@ const tools: Skill[] = [
     name: 'Git',
     icon: <Git className="size-10" />,
     link: 'https://git-scm.com/',
-    level: 'proficient',
+    level: 'expert',
   },
   {
     name: 'GitHub',
     icon: <GitHub className="size-10" />,
     link: 'https://github.com/',
-    level: 'proficient',
+    level: 'advanced',
   },
   {
     name: 'Vercel',
