@@ -1,6 +1,7 @@
+'use client';
+
 import { Magnetic } from '@/components/animate-ui/effects/magnetic';
-import PathInfo from '@/components/path-info';
-import { SkillBadge, type SkillLevel } from '@/components/skill-badge';
+import { SkillCard, type SkillLevel } from '@/components/skill-card';
 import {
   AuthJs,
   Drizzle,
@@ -37,15 +38,8 @@ import {
   TailwindCSS,
   TypeScript,
 } from 'developer-icons';
-import Link from 'next/link';
+import { motion } from 'motion/react';
 import type { JSX } from 'react';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Skills',
-  description:
-    'My technical skills stack: React, Next.js, TypeScript, Tailwind CSS, Node.js, and more.',
-};
 
 type Skill = {
   name: string;
@@ -256,88 +250,109 @@ const tools: Skill[] = [
   },
 ];
 
-const Page = () => {
+export const Skills = () => {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, scale: 0.8 },
+    show: { opacity: 1, scale: 1 },
+  };
+
   return (
-    <div className="h-auto w-full">
-      <PathInfo />
-      <div className="px-3 pb-3 flex flex-col space-y-7">
+    <div className="w-full py-10">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true, margin: '-50px' }}
+        className="px-3 mb-3 flex flex-col space-y-7">
+        <h2 className="bg-secondary w-fit p-1.5 border border-dashed text-lg font-mono">
+          Skills
+        </h2>
+
         <div>
-          <h2 className="bg-secondary w-fit p-1.5 border border-dashed mb-4 text-lg">
+          <h3 className="text-xl font-semibold mb-4 border-b border-dashed w-fit pb-1">
             Frontend
-          </h2>
-
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-3">
+          </h3>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-2">
             {frontend.map((skill, i) => (
-              <Magnetic onlyOnHover key={i}>
-                <Link
-                  href={skill.link}
-                  target="_blank"
-                  className="bg-card/75 p-2 flex flex-col items-center border border-dashed space-y-1.5">
-                  {skill.icon}
-                  <p className="text-sm  text-center">{skill.name}</p>
-
-                  <SkillBadge
+              <motion.div key={i} variants={item}>
+                <Magnetic springOptions={{ bounce: 0.12 }}>
+                  <SkillCard
+                    name={skill.name}
+                    icon={skill.icon}
+                    link={skill.link}
                     level={skill.level}
-                    className="rounded uppercase shadow"
                   />
-                </Link>
-              </Magnetic>
+                </Magnetic>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <div>
-          <h2 className="bg-secondary w-fit p-1.5 border border-dashed mb-4 text-lg">
+          <h3 className="text-xl font-semibold mb-4 border-b border-dashed w-fit pb-1">
             Backend
-          </h2>
-
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-3">
+          </h3>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-2">
             {backend.map((skill, i) => (
-              <Magnetic onlyOnHover key={i}>
-                <Link
-                  href={skill.link}
-                  target="_blank"
-                  className="bg-card/75 p-2 flex flex-col items-center border border-dashed space-y-1.5">
-                  {skill.icon}
-                  <p className="text-sm  text-center">{skill.name}</p>
-
-                  <SkillBadge
+              <motion.div key={i} variants={item}>
+                <Magnetic springOptions={{ bounce: 0.12 }}>
+                  <SkillCard
+                    name={skill.name}
+                    icon={skill.icon}
+                    link={skill.link}
                     level={skill.level}
-                    className="rounded uppercase shadow"
                   />
-                </Link>
-              </Magnetic>
+                </Magnetic>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <div>
-          <h2 className="bg-secondary w-fit p-1.5 border border-dashed mb-4 text-lg">
+          <h3 className="text-xl font-semibold mb-4 border-b border-dashed w-fit pb-1">
             Tools
-          </h2>
-
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-3">
+          </h3>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-2">
             {tools.map((skill, i) => (
-              <Magnetic onlyOnHover key={i}>
-                <Link
-                  href={skill.link}
-                  target="_blank"
-                  className="bg-card/75 p-2 flex flex-col items-center border border-dashed space-y-1.5">
-                  {skill.icon}
-                  <p className="text-sm  text-center">{skill.name}</p>
-
-                  <SkillBadge
+              <motion.div key={i} variants={item}>
+                <Magnetic springOptions={{ bounce: 0.12 }}>
+                  <SkillCard
+                    name={skill.name}
+                    icon={skill.icon}
+                    link={skill.link}
                     level={skill.level}
-                    className="rounded uppercase shadow"
                   />
-                </Link>
-              </Magnetic>
+                </Magnetic>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
-
-export default Page;

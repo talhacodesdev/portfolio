@@ -1,7 +1,6 @@
-import SplashScreen from '@/components/splash-screen';
+import ClientLayout from '@/components/client-layout';
 import type { Metadata } from 'next';
 import './globals.css';
-import { ThemeProvider } from '@/components/ui/theme-provider';
 import type { ReactNode } from 'react';
 import { GeistMono } from 'geist/font/mono';
 
@@ -88,14 +87,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
 
           {/* Main content */}
           <div className="relative z-10">
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange>
-              <SplashScreen />
-              {children}
-            </ThemeProvider>
+            <ClientLayout>{children}</ClientLayout>
           </div>
         </div>
       </body>

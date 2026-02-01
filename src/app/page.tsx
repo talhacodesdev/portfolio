@@ -1,115 +1,28 @@
-import { FourBorder } from '@/components/four-border';
-import MenuList from '@/components/menu-list';
-import { Separator } from '@/components/separator';
-import {
-  Facebook,
-  GitHub,
-  Gmail,
-  LinkedIn,
-  WhatsApp,
-  XformerlyTwitter,
-  Telegram,
-  DailyDev,
-} from '@/icon/icons';
-import Link from 'next/link';
-
-const icons = [
-  {
-    label: 'Facebook',
-    icon: <Facebook className="text-muted-foreground text-xl" />,
-    href: 'https://www.facebook.com/talhacodesdev',
-  },
-  {
-    label: 'LinkedIn',
-    icon: <LinkedIn className="text-muted-foreground text-xl" />,
-    href: 'https://www.linkedin.com/in/talhacodesdev/',
-  },
-  {
-    label: 'X',
-    icon: <XformerlyTwitter className="text-muted-foreground text-xl" />,
-    href: 'https://x.com/talhacodesdev',
-  },
-  {
-    label: 'GitHub',
-    icon: <GitHub className="text-muted-foreground text-xl" />,
-    href: 'https://github.com/talhacodesdev',
-  },
-  {
-    label: 'DailyDev',
-    icon: <DailyDev className="text-muted-foreground text-3xl" />,
-    href: 'https://app.daily.dev/talhacodesdev',
-  },
-  {
-    label: 'Gmail',
-    icon: <Gmail className="text-muted-foreground text-xl" />,
-    href: 'mailto:talhacodes.dev@gmail.com?subject=Hello%20Talha&body=I%20loved%20your%20portfolio!',
-  },
-
-  {
-    label: 'WhatsApp',
-    icon: <WhatsApp className="text-muted-foreground text-xl" />,
-    href: 'https://wa.me/8801812931537',
-  },
-  {
-    label: 'Telegram',
-    icon: <Telegram className="text-muted-foreground text-xl" />,
-    href: 'https://t.me/talhacodesdev',
-  },
-  // {
-  //   label: 'Discord',
-  //   icon: <Discord className="text-muted-foreground text-xl" />,
-  //   href: 'https://www.facebook.com/rohman.azhar.9',
-  // },
-];
+import { About } from '@/components/home/about';
+import { Header } from '@/components/home/header';
+import { Hero } from '@/components/home/hero';
+import { Projects } from '@/components/home/projects';
+import { Skills } from '@/components/home/skills';
 
 const Page = () => {
   return (
-    <div className="h-dvh w-full">
-      <div className="flex justify-center items-center h-full">
-        <div className="w-[90%] max-w-sm">
-          <FourBorder>
-            <div className="bg-card/75 p-6">
-              <h1 className="text-2xl text-center">
-                {/* <ShinyText text="Talha Codes" speed={5} /> */}
-                Talha Codes
-              </h1>
-              <p className="text-sm text-center text-muted-foreground">
-                Full Stack Developer
-              </p>
-              <Separator
-                label={
-                  <div className="border px-2 py-1 rounded-full border-dashed my-3">
-                    MENU
-                  </div>
-                }
-                gradient
-              />
-              <MenuList />
-              <div>
-                <Separator
-                  label={
-                    <div className="border px-2 py-1 rounded-full border-dashed my-3">
-                      Links
-                    </div>
-                  }
-                  gradient
-                />
-                <div className="flex justify-center items-center gap-x-3 ">
-                  {icons.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      target="_blank"
-                      className=" hover:scale-125 transition  duration-300 ease-[cubic-bezier(0.42,0,1,1)]">
-                      {item.icon}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </FourBorder>
-        </div>
-      </div>
+    <div className="w-full flex flex-col items-center">
+      <Header />
+      <section id="hero" className="w-full max-w-4xl mx-auto pt-24 md:pt-32">
+        <Hero />
+      </section>
+
+      <section id="about" className="w-full max-w-4xl mx-auto">
+        <About />
+      </section>
+
+      <section id="skills" className="w-full max-w-5xl mx-auto">
+        <Skills />
+      </section>
+
+      <section id="projects" className="w-full max-w-4xl mx-auto mb-20">
+        <Projects />
+      </section>
     </div>
   );
 };
