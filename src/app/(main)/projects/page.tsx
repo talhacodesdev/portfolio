@@ -11,7 +11,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import { CloudMoon, Code, Eye, Github } from 'lucide-react';
+import { CloudMoon, Code, Eye } from 'lucide-react';
 import { NextJs, React, ReactQuery, TailwindCSS } from 'developer-icons';
 import type { JSX } from 'react';
 import { AuthJs, Drizzle, ShadcnUI } from '@/icon/icons';
