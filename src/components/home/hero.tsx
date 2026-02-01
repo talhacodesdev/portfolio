@@ -1,6 +1,5 @@
 'use client';
 
-import { Logo } from '@/components/logo';
 import {
   DailyDev,
   Facebook,
@@ -146,7 +145,7 @@ export const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
         className="flex flex-wrap justify-center gap-6">
-        {icons.map((item, i) => (
+        {icons.map((item) => (
           <motion.div
             key={item.label}
             whileHover={{ scale: 1.1, y: -2 }}
