@@ -18,10 +18,10 @@ const menu = [
     label: 'Projects',
     href: '/projects',
   },
-  {
-    label: 'Contact Me',
-    href: '/contact',
-  },
+  // {
+  //   label: 'Contact Me',
+  //   href: '/contact',
+  // },
 ];
 const MenuList = () => {
   const [hovered, setHovered] = useState<null | number>(null);

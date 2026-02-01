@@ -39,6 +39,13 @@ import {
 } from 'developer-icons';
 import Link from 'next/link';
 import type { JSX } from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Skills',
+  description:
+    'My technical skills stack: React, Next.js, TypeScript, Tailwind CSS, Node.js, and more.',
+};
 
 type Skill = {
   name: string;

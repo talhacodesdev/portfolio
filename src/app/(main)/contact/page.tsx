@@ -4,6 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Contact',
+  description:
+    'Get in touch with Abdullah Al Mahmud Talha for freelance work, collaboration, or job opportunities.',
+};
 
 const Page = () => {
   return (

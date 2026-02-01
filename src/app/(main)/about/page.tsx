@@ -7,6 +7,13 @@ import { Download } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Balancer from 'react-wrap-balancer';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Me',
+  description:
+    'Learn more about Abdullah Al Mahmud Talha, his background, experience, and journey as a Full Stack Developer.',
+};
 
 // const funnyText = [
 //   'Fueled by ☕, focused on 💻, and occasionally lost in 🔍 console logs',
