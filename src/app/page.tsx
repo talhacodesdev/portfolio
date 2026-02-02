@@ -16,7 +16,7 @@ const Page = () => {
         <About />
       </section>
 
-      <section id="skills" className="w-full max-w-5xl mx-auto">
+      <section id="skills" className="w-full max-w-4xl mx-auto">
         <Skills />
       </section>
 

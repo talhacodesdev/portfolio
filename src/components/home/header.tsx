@@ -60,6 +60,38 @@ export const Header = () => {
     }
   };
 
+  const playClickSound = () => {
+    try {
+      const AudioContext =
+        window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) return;
+
+      const ctx = new AudioContext();
+      const oscillator = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+
+      // "Cute Bubble" sound (Sine wave for softness)
+      oscillator.type = 'sine';
+
+      // Pitch glide up (Cheerful/Bubble effect)
+      oscillator.frequency.setValueAtTime(300, ctx.currentTime);
+      oscillator.frequency.linearRampToValueAtTime(600, ctx.currentTime + 0.1);
+
+      // Soft envelope (Gentle attack and release)
+      gainNode.gain.setValueAtTime(0, ctx.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(ctx.destination);
+
+      oscillator.start();
+      oscillator.stop(ctx.currentTime + 0.2);
+    } catch (error) {
+      console.error('Audio play failed', error);
+    }
+  };
+
   return (
     <>
       <motion.header
@@ -81,34 +113,39 @@ export const Header = () => {
               <Logo size={40} showText={!scrolled && !isMenuOpen} />
             </Link>
 
-            {/* Menu Toggle Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="z-50 relative p-2 hover:bg-primary/10 rounded-md transition-colors group"
-              aria-label="Toggle Menu">
-              <div className="relative w-6 h-6 flex items-center justify-center">
-                <motion.div
-                  initial={false}
-                  animate={{
-                    rotate: isMenuOpen ? 90 : 0,
-                    opacity: isMenuOpen ? 0 : 1,
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute">
-                  <Menu className="w-6 h-6 text-foreground" />
-                </motion.div>
-                <motion.div
-                  initial={false}
-                  animate={{
-                    rotate: isMenuOpen ? 0 : -90,
-                    opacity: isMenuOpen ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute">
-                  <X className="w-6 h-6 text-foreground" />
-                </motion.div>
-              </div>
-            </button>
+            <div className="flex items-center gap-4 z-50">
+              {/* Menu Toggle Button */}
+              <button
+                onClick={() => {
+                  setIsMenuOpen(!isMenuOpen);
+                  playClickSound();
+                }}
+                className="relative p-2 hover:bg-primary/10 rounded-md transition-colors group"
+                aria-label="Toggle Menu">
+                <div className="relative w-6 h-6 flex items-center justify-center">
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      rotate: isMenuOpen ? 90 : 0,
+                      opacity: isMenuOpen ? 0 : 1,
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute">
+                    <Menu className="w-6 h-6 text-foreground" />
+                  </motion.div>
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      rotate: isMenuOpen ? 0 : -90,
+                      opacity: isMenuOpen ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute">
+                    <X className="w-6 h-6 text-foreground" />
+                  </motion.div>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
