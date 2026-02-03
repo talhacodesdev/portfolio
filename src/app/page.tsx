@@ -16,13 +16,13 @@ const Page = () => {
         <About />
       </section>
 
-      <section id="skills" className="w-full max-w-5xl mx-auto">
+      <section id="skills" className="w-full max-w-4xl mx-auto">
         <Skills />
       </section>
 
-      <section id="projects" className="w-full max-w-4xl mx-auto mb-20">
+      {/* <section id="projects" className="w-full max-w-4xl mx-auto mb-20">
         <Projects />
-      </section>
+      </section> */}
     </div>
   );
 };

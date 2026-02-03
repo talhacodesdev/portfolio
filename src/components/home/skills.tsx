@@ -274,23 +274,27 @@ export const Skills = () => {
         transition={{ duration: 0.5 }}
         viewport={{ once: true, margin: '-50px' }}
         className="px-3 mb-3 flex flex-col space-y-7">
-        <h2 className="bg-secondary w-fit p-1.5 border border-dashed text-lg font-mono">
-          Skills
-        </h2>
+        <div className="flex justify-center mb-6">
+          <h2 className="bg-secondary/50 backdrop-blur-sm px-6 py-2 border border-dashed border-border rounded-full text-lg font-mono tracking-tight text-muted-foreground hover:text-primary transition-colors duration-300">
+            Skills
+          </h2>
+        </div>
 
         <div>
-          <h3 className="text-xl font-semibold mb-4 border-b border-dashed w-fit pb-1">
-            Frontend
-          </h3>
+          <div className="flex justify-center mb-4">
+            <h3 className="bg-muted/50 backdrop-blur-sm px-4 py-1 border border-dashed border-border rounded-full text-base font-mono tracking-tight text-muted-foreground">
+              Frontend
+            </h3>
+          </div>
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex flex-wrap gap-2">
+            className="flex flex-wrap justify-center gap-2">
             {frontend.map((skill, i) => (
               <motion.div key={i} variants={item}>
-                <Magnetic springOptions={{ bounce: 0.12 }}>
+                <Magnetic springOptions={{ bounce: 0.1 }}>
                   <SkillCard
                     name={skill.name}
                     icon={skill.icon}
@@ -304,15 +308,17 @@ export const Skills = () => {
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold mb-4 border-b border-dashed w-fit pb-1">
-            Backend
-          </h3>
+          <div className="flex justify-center mb-4">
+            <h3 className="bg-muted/50 backdrop-blur-sm px-4 py-1 border border-dashed border-border rounded-full text-base font-mono tracking-tight text-muted-foreground">
+              Backend
+            </h3>
+          </div>
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex flex-wrap gap-2">
+            className="flex flex-wrap justify-center gap-2">
             {backend.map((skill, i) => (
               <motion.div key={i} variants={item}>
                 <Magnetic springOptions={{ bounce: 0.12 }}>
@@ -329,15 +335,17 @@ export const Skills = () => {
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold mb-4 border-b border-dashed w-fit pb-1">
-            Tools
-          </h3>
+          <div className="flex justify-center mb-4">
+            <h3 className="bg-muted/50 backdrop-blur-sm px-4 py-1 border border-dashed border-border rounded-full text-base font-mono tracking-tight text-muted-foreground">
+              Tools
+            </h3>
+          </div>
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="flex flex-wrap gap-2">
+            className="flex flex-wrap justify-center gap-2">
             {tools.map((skill, i) => (
               <motion.div key={i} variants={item}>
                 <Magnetic springOptions={{ bounce: 0.12 }}>

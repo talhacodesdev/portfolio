@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'motion/react';
 
 interface LogoProps {
   className?: string;
@@ -46,16 +47,23 @@ export const Logo = ({ className, size = 40, showText = true }: LogoProps) => {
         </svg>
       </div>
 
-      {showText && (
-        <div className="flex flex-col justify-center">
-          <span className="text-xl font-bold leading-none tracking-tight font-mono">
-            Talha<span className="text-primary">.</span>
-          </span>
-          <span className="text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-medium">
-            Codes
-          </span>
-        </div>
-      )}
+      <AnimatePresence>
+        {showText && (
+          <motion.div
+            initial={{ width: 0, opacity: 0, x: -10 }}
+            animate={{ width: 'auto', opacity: 1, x: 0 }}
+            exit={{ width: 0, opacity: 0, x: -10 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="flex flex-col justify-center overflow-hidden whitespace-nowrap">
+            <span className="text-xl font-bold leading-none tracking-tight font-mono">
+              Talha<span className="text-primary">.</span>
+            </span>
+            <span className="text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-medium">
+              Codes
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

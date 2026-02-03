@@ -60,6 +60,39 @@ export const Header = () => {
     }
   };
 
+  const playClickSound = () => {
+    try {
+      const AudioContext =
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) return;
+
+      const ctx = new AudioContext();
+      const oscillator = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+
+      // "Cute Bubble" sound (Sine wave for softness)
+      oscillator.type = 'sine';
+
+      // Pitch glide up (Cheerful/Bubble effect)
+      oscillator.frequency.setValueAtTime(300, ctx.currentTime);
+      oscillator.frequency.linearRampToValueAtTime(600, ctx.currentTime + 0.1);
+
+      // Soft envelope (Gentle attack and release)
+      gainNode.gain.setValueAtTime(0, ctx.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.02);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(ctx.destination);
+
+      oscillator.start();
+      oscillator.stop(ctx.currentTime + 0.2);
+    } catch (error) {
+      console.error('Audio play failed', error);
+    }
+  };
+
   return (
     <>
       <motion.header
@@ -83,7 +116,10 @@ export const Header = () => {
 
             {/* Menu Toggle Button */}
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={() => {
+                setIsMenuOpen(!isMenuOpen);
+                playClickSound();
+              }}
               className="z-50 relative p-2 hover:bg-primary/10 rounded-md transition-colors group"
               aria-label="Toggle Menu">
               <div className="relative w-6 h-6 flex items-center justify-center">

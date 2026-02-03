@@ -144,20 +144,23 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="flex flex-wrap justify-center gap-6">
-        {icons.map((item) => (
-          <motion.div
-            key={item.label}
-            whileHover={{ scale: 1.1, y: -2 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 10 }}>
-            <Link
-              href={item.href}
-              target="_blank"
-              className="block text-muted-foreground transition-colors">
-              {item.icon}
-            </Link>
-          </motion.div>
-        ))}
+        className="flex justify-center w-full">
+        <div className="flex flex-nowrap items-center justify-center gap-3 md:gap-6 px-4 md:px-8 py-3 bg-secondary/20 backdrop-blur-sm border border-dashed border-border rounded-full overflow-x-auto max-w-[95vw] scrollbar-hide">
+          {icons.map((item) => (
+            <motion.div
+              key={item.label}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}>
+              <Link
+                href={item.href}
+                target="_blank"
+                className="block text-muted-foreground hover:text-primary transition-colors">
+                {item.icon}
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
     </div>
   );
