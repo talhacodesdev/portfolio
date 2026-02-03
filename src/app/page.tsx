@@ -20,9 +20,9 @@ const Page = () => {
         <Skills />
       </section>
 
-      <section id="projects" className="w-full max-w-4xl mx-auto mb-20">
+      {/* <section id="projects" className="w-full max-w-4xl mx-auto mb-20">
         <Projects />
-      </section>
+      </section> */}
     </div>
   );
 };

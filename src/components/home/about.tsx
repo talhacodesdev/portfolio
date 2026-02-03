@@ -1,7 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { BadgeCheck, Download, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -48,13 +47,10 @@ export const About = () => {
                 href={cert.pdf}
                 target="_blank"
                 key={cert.id}
-                className={`block group w-full md:max-w-[80%] ${index % 2 === 0 ? 'mr-auto' : 'ml-auto'}`}>
-                <motion.div
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="relative h-full bg-card/50 backdrop-blur-sm border border-dashed border-border p-4 hover:bg-secondary/30 transition-colors duration-500">
+                className={`block group w-full md:max-w-[80%] ${
+                  index % 2 === 0 ? 'mr-auto' : 'ml-auto'
+                }`}>
+                <div className="relative h-full bg-card/50 backdrop-blur-sm border border-dashed border-border p-4 hover:bg-secondary/30 transition-colors duration-500">
                   {/* Corner Accents (Tech/Cyber Feel) */}
                   <div className="absolute -top-[1px] -left-[1px] w-3 h-3 border-t-2 border-l-2 border-primary opacity-50 group-hover:opacity-100 transition-all duration-300" />
                   <div className="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b-2 border-r-2 border-primary opacity-50 group-hover:opacity-100 transition-all duration-300" />
@@ -92,7 +88,7 @@ export const About = () => {
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </Link>
             ))}
           </div>

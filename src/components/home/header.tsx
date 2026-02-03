@@ -63,6 +63,7 @@ export const Header = () => {
   const playClickSound = () => {
     try {
       const AudioContext =
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         window.AudioContext || (window as any).webkitAudioContext;
       if (!AudioContext) return;
 
@@ -113,39 +114,37 @@ export const Header = () => {
               <Logo size={40} showText={!scrolled && !isMenuOpen} />
             </Link>
 
-            <div className="flex items-center gap-4 z-50">
-              {/* Menu Toggle Button */}
-              <button
-                onClick={() => {
-                  setIsMenuOpen(!isMenuOpen);
-                  playClickSound();
-                }}
-                className="relative p-2 hover:bg-primary/10 rounded-md transition-colors group"
-                aria-label="Toggle Menu">
-                <div className="relative w-6 h-6 flex items-center justify-center">
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      rotate: isMenuOpen ? 90 : 0,
-                      opacity: isMenuOpen ? 0 : 1,
-                    }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute">
-                    <Menu className="w-6 h-6 text-foreground" />
-                  </motion.div>
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      rotate: isMenuOpen ? 0 : -90,
-                      opacity: isMenuOpen ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute">
-                    <X className="w-6 h-6 text-foreground" />
-                  </motion.div>
-                </div>
-              </button>
-            </div>
+            {/* Menu Toggle Button */}
+            <button
+              onClick={() => {
+                setIsMenuOpen(!isMenuOpen);
+                playClickSound();
+              }}
+              className="z-50 relative p-2 hover:bg-primary/10 rounded-md transition-colors group"
+              aria-label="Toggle Menu">
+              <div className="relative w-6 h-6 flex items-center justify-center">
+                <motion.div
+                  initial={false}
+                  animate={{
+                    rotate: isMenuOpen ? 90 : 0,
+                    opacity: isMenuOpen ? 0 : 1,
+                  }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute">
+                  <Menu className="w-6 h-6 text-foreground" />
+                </motion.div>
+                <motion.div
+                  initial={false}
+                  animate={{
+                    rotate: isMenuOpen ? 0 : -90,
+                    opacity: isMenuOpen ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute">
+                  <X className="w-6 h-6 text-foreground" />
+                </motion.div>
+              </div>
+            </button>
           </div>
         </div>
       </motion.header>

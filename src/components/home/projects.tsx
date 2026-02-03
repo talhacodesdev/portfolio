@@ -2,14 +2,6 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
 import { AuthJs, Drizzle, ShadcnUI } from '@/icon/icons';
 import {
   NextJs,
@@ -17,11 +9,11 @@ import {
   ReactQuery,
   TailwindCSS,
 } from 'developer-icons';
-import { CloudMoon, Code, Eye } from 'lucide-react';
-import { motion } from 'motion/react';
+import { CloudMoon, Eye, Github, ArrowUpRight } from 'lucide-react';
+import { motion, useMotionTemplate, useMotionValue } from 'motion/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import type { JSX } from 'react';
+import { type JSX, type MouseEvent } from 'react';
 
 type Project = {
   name: string;
@@ -83,120 +75,176 @@ const projects: Project[] = [
   },
 ];
 
-export const Projects = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+function SpotlightCard({
+  children,
+  className = '',
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  const item = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0 },
-  };
+  function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
   return (
-    <div className="w-full py-10">
+    <div
+      className={`group relative border border-dashed border-border bg-card/50 overflow-hidden ${className}`}
+      onMouseMove={handleMouseMove}>
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              650px circle at ${mouseX}px ${mouseY}px,
+              rgba(255,255,255,0.1),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+      <div className="relative h-full">{children}</div>
+    </div>
+  );
+}
+
+export const Projects = () => {
+  return (
+    <div className="w-full py-10" id="projects">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true, margin: '-50px' }}
-        className="px-3 pb-3 flex flex-col space-y-7">
-        <h2 className="bg-secondary w-fit p-1.5 border border-dashed text-lg font-mono">
-          Projects
-        </h2>
+        className="px-3 pb-3 flex flex-col space-y-16">
+        {/* Section Title with Tech Accents */}
+        <div className="flex flex-col items-center gap-2 mb-8">
+          <div className="flex items-center gap-2 text-muted-foreground/50">
+            <span className="h-[1px] w-12 bg-current" />
+            <span className="text-[10px] font-mono tracking-[0.2em] uppercase">
+              System.Projects
+            </span>
+            <span className="h-[1px] w-12 bg-current" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground relative">
+            <span className="relative z-10">Featured Work</span>
+            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-primary/20 -skew-x-12 blur-sm" />
+          </h2>
+        </div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-1 gap-12 max-w-4xl mx-auto pb-10">
-          {projects.map((project, i) => (
-            <motion.div key={i} variants={item}>
-              <Card className="flex flex-col bg-card/50 backdrop-blur-sm border-dashed rounded-none hover:border-primary/50 transition-all duration-500 group overflow-hidden shadow-sm hover:shadow-md">
-                <CardHeader className="p-0 border-b border-dashed w-full shrink-0">
-                  <div className="relative w-full aspect-video overflow-hidden bg-muted/30 group-hover:bg-muted/50 transition-colors">
-                    {/* Browser Bar Decoration */}
-                    <div className="absolute top-0 left-0 right-0 h-8 bg-black/20 backdrop-blur-md z-10 flex items-center px-3 gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                    </div>
+        <div className="flex flex-col gap-24 max-w-5xl mx-auto">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className={`relative flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 lg:gap-12 items-center group`}>
+              {/* Connecting Line (Vertical) - Absolute for visual flow */}
+              <div className="absolute top-0 bottom-0 left-1/2 w-[1px] bg-border border-l border-dashed -translate-x-1/2 hidden lg:block -z-10 opacity-30" />
 
+              {/* Project Image Area */}
+              <div className="w-full lg:w-7/12 relative perspective-1000">
+                <SpotlightCard className="rounded-xl p-2 bg-secondary/10 backdrop-blur-sm border-white/10">
+                  <div className="relative aspect-video rounded-lg overflow-hidden bg-muted">
                     <Image
                       src={project.image}
                       alt={project.name}
                       fill
-                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 800px"
-                      quality={95}
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60" />
+
+                    {/* Status Badge */}
+                    <div className="absolute top-3 right-3 flex gap-2">
+                      <Badge
+                        variant="outline"
+                        className="bg-black/50 backdrop-blur-md border-white/10 text-white text-[10px] uppercase tracking-wider">
+                        v1.0
+                      </Badge>
+                    </div>
                   </div>
-                </CardHeader>
+                </SpotlightCard>
 
-                <div className="flex flex-col flex-1 p-6 gap-6">
-                  <CardContent className="p-0 flex flex-col gap-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <CardTitle className="text-3xl font-bold tracking-tight group-hover:text-primary transition-colors">
-                          {project.name}
-                        </CardTitle>
-                      </div>
-                      <CardDescription className="text-base text-muted-foreground leading-relaxed">
-                        {project.description}
-                      </CardDescription>
-                    </div>
+                {/* Decorative Background Elements */}
+                <div
+                  className={`absolute -bottom-4 -right-4 w-24 h-24 bg-primary/20 blur-3xl -z-10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${index % 2 !== 0 ? 'right-auto -left-4' : ''}`}
+                />
+              </div>
 
-                    <div className="space-y-3 pt-2">
-                      <h4 className="text-xs font-semibold text-muted-foreground/80 uppercase tracking-widest">
-                        Technologies
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.stack.map((stack, i) => (
-                          <Badge
-                            key={i}
-                            variant="secondary"
-                            className="rounded-none px-2.5 py-1 text-xs border-dashed border-border/50 font-medium flex items-center gap-1.5 bg-secondary/50 hover:bg-secondary hover:text-secondary-foreground transition-all">
-                            {stack.icon}
-                            {stack.title}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  </CardContent>
+              {/* Project Info Area */}
+              <div className="w-full lg:w-5/12 flex flex-col gap-5 relative">
+                {/* Numbering Watermark */}
+                <span className="absolute -top-12 -left-6 text-9xl font-black text-foreground/5 select-none -z-10 font-mono">
+                  0{index + 1}
+                </span>
 
-                  <CardFooter className="p-0 pt-2 grid grid-cols-2 gap-4">
-                    <Button
-                      variant="outline"
-                      className="w-full border-dashed rounded-none h-11 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                      asChild>
-                      <Link href={project.github} target="_blank">
-                        <Code className="mr-2 size-4" />
-                        Code
-                      </Link>
-                    </Button>
-                    <Button
-                      variant="default"
-                      className="w-full rounded-none h-11 text-sm font-medium shadow-sm hover:shadow-primary/25 hover:shadow-lg transition-all duration-300"
-                      asChild>
-                      <Link href={project.live} target="_blank">
-                        <Eye className="mr-2 size-4" />
-                        Preview
-                      </Link>
-                    </Button>
-                  </CardFooter>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <span className="h-[2px] w-6 bg-primary" />
+                    <span className="font-mono text-primary text-xs tracking-widest uppercase">
+                      Deployed
+                    </span>
+                  </div>
+
+                  <h3 className="text-3xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-300">
+                    {project.name}
+                  </h3>
+
+                  <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+                    {project.description}
+                  </p>
                 </div>
-              </Card>
-            </motion.div>
+
+                {/* Tech Stack - Minimalist */}
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {project.stack.map((tech, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border/50 bg-secondary/10 text-xs font-medium text-muted-foreground hover:border-primary/50 hover:text-foreground transition-colors cursor-default">
+                      {tech.icon}
+                      {tech.title}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center gap-4 mt-4 pt-2">
+                  <Link href={project.live} target="_blank">
+                    <Button className="rounded-full px-6 gap-2 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300">
+                      <Eye className="w-4 h-4" /> Live Demo
+                    </Button>
+                  </Link>
+                  <Link href={project.github} target="_blank">
+                    <Button
+                      variant="ghost"
+                      className="rounded-full px-6 gap-2 hover:bg-secondary/50">
+                      <Github className="w-4 h-4" /> Source
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
           ))}
-        </motion.div>
+        </div>
+
+        {/* Archive Link - Styled as a Terminal Command */}
+        <div className="flex justify-center mt-16">
+          <Link
+            href="https://github.com/TalhaCodes?tab=repositories"
+            target="_blank"
+            className="group">
+            <div className="flex items-center gap-3 px-6 py-3 rounded-full bg-secondary/30 border border-dashed border-border hover:border-primary/50 transition-colors">
+              <span className="text-primary font-mono text-sm">&gt;</span>
+              <span className="text-sm font-mono text-muted-foreground group-hover:text-foreground transition-colors">
+                cd /all-projects
+              </span>
+              <ArrowUpRight className="w-3 h-3 text-muted-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
+          </Link>
+        </div>
       </motion.div>
     </div>
   );
