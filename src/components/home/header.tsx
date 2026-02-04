@@ -170,7 +170,7 @@ export const Header = () => {
                     onClick={(e) => handleScrollTo(e, item.link)}
                     className="text-4xl font-bold font-mono tracking-tighter hover:text-primary transition-colors relative group">
                     {item.name}
-                    <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-primary transition-all group-hover:w-full" />
+                    <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-primary transition-all group-hover:w-full duration-300" />
                   </Link>
                 </motion.div>
               ))}

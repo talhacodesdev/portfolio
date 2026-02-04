@@ -48,7 +48,7 @@ export default function LogoGeneratorPage() {
             <div
               ref={logoWithTextRef}
               className="p-8 rounded-xl bg-transparent inline-block">
-              <Logo size={200} showText={true} className="text-white" />
+              <Logo size={200} showText={true} className="dark" />
             </div>
           </div>
           <Button
@@ -68,7 +68,7 @@ export default function LogoGeneratorPage() {
             <div
               ref={logoIconOnlyRef}
               className="p-8 rounded-xl bg-transparent inline-block">
-              <Logo size={200} showText={false} className="text-white" />
+              <Logo size={200} showText={false} className="dark" />
             </div>
           </div>
           <Button
@@ -94,7 +94,7 @@ export default function LogoGeneratorPage() {
               <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl scale-150" />
 
               {/* Smaller Logo to fit in circle */}
-              <Logo size={140} showText={false} className="text-white z-10" />
+              <Logo size={140} showText={false} className="dark z-10" />
             </div>
           </div>
           <Button

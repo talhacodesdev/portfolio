@@ -22,6 +22,22 @@ const certificates = [
     image: '/Programming Hero - Level-2.png',
     pdf: '/Programming Hero - Level-2.pdf',
   },
+  {
+    id: 3,
+    title: 'Complete Web Development',
+    level: 'Level 1',
+    issuer: 'Programming Hero',
+    image: '/Programming Hero - Level-1.png',
+    pdf: '/Programming Hero - Level-1.pdf',
+  },
+  {
+    id: 4,
+    title: 'Next Level Web Development',
+    level: 'Level 2',
+    issuer: 'Programming Hero',
+    image: '/Programming Hero - Level-2.png',
+    pdf: '/Programming Hero - Level-2.pdf',
+  },
 ];
 
 export const About = () => {

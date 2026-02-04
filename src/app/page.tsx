@@ -1,7 +1,7 @@
 import { About } from '@/components/home/about';
 import { Header } from '@/components/home/header';
 import { Hero } from '@/components/home/hero';
-// import { Projects } from '@/components/home/projects';
+import { Projects } from '@/components/home/projects';
 import { Skills } from '@/components/home/skills';
 
 const Page = () => {
@@ -20,9 +20,11 @@ const Page = () => {
         <Skills />
       </section>
 
-      {/* <section id="projects" className="w-full max-w-4xl mx-auto mb-20">
+      <section id="projects" className="w-full max-w-4xl mx-auto">
         <Projects />
-      </section> */}
+      </section>
+
+      {/* <Footer /> */}
     </div>
   );
 };

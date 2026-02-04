@@ -31,10 +31,9 @@ export const Logo = ({ className, size = 40, showText = true }: LogoProps) => {
           {/* T Shape */}
           <path
             d="M2 6H12M7 6V18"
-            stroke="currentColor"
+            style={{ stroke: 'var(--primary)' }}
             strokeWidth="2.5"
             strokeLinecap="square"
-            className="text-primary"
           />
           {/* C Shape - Interlocking/Next to T */}
           <path
